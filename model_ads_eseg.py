@@ -5,9 +5,8 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPRegressor
 from sklearn.pipeline import Pipeline
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import cross_validate,train_test_split
 from sklearn.metrics import mean_absolute_error, make_scorer
-
 
 def load_data():
     """
@@ -16,24 +15,23 @@ def load_data():
     # get path to complete dataset
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                         'data',
-                        'dataset.csv')
+                        'data.csv')
 
     # pandas DataFrame object
     df = pd.read_csv(path)
 
     return df
 
-def split():
-        # Inputs and Target
+def split(df):
+    # Inputs and Target
     y= df['DFT'].values
     x=df[['ΔCE/CN','ΔBE/CNads','ΔWS','ΔEA']].values
     
     # Splits the data into train and test sets
     X_train, X_test, y_train, y_test = train_test_split(x,y, train_size=0.85, shuffle=True,random_state=91)
     
-     return X_train, X_test, y_train, y_test   
+    return X_train, X_test, y_train, y_test   
 
-df= load_data()
 
 def eseg_ads_model(df):
     """
@@ -51,28 +49,28 @@ def eseg_ads_model(df):
     # create model pipeline 
     model = Pipeline(steps = [
                                 ('StandardScaler', scaler),
-                                ('NN MLP', nn_mlp)]
+                                ('NN MLP', nn_mlp)])
 
     # training and returning the model
     model.fit(X_train, y_train)
     
 
     return model
-model= eseg_ads_model(df)
+
 
 def evaluate_error(model,df):
-    mae= make_scorer(mea)
+    mae= make_scorer(mean_absolute_error)
     X_train, X_test, y_train, y_test = split(df)
     #5-Fold Cross Validation
     cv=5  
     scores = cross_validate(model,X_train, y_train, scoring= mae,cv = cv,return_train_score=True)
     train_mae =scores['train_score'].mean()
     validation_mae=scores['test_score'].mean()
-    test_mae=mae(y_test, y_pred_test)
-    return train_mae, validation mae, test_mae
+    test_mae=mae(model,X_test,y_test)
+    return train_mae, validation_mae, test_mae
 
 if __name__ == "__main__":
     df = load_data()
     model= eseg_ads_model(df)
-    train_mae, validation mae, test_mae=evaluate_error(model,df)
-    print(f'Train MAE: {train_mae} eV\nValidation MAE: {validation_mae}eV\nTest MAE: {test_mae}eV')
+    train_mae, validation_mae, test_mae = evaluate_error(model,df)
+    print(f'Train MAE: {train_mae} eV\nValidation MAE: {validation_mae} eV\nTest MAE: {test_mae} eV')
