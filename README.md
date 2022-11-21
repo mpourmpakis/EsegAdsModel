@@ -1,5 +1,5 @@
 # EsegAdsModel
-Segregation Energy Model In the Presence of Adsorbate Model for Single Atom Alloys (SAA)
+Segregation Energy Model In the Presence of Adsorbate Model for Single Atom Alloys (SAAs)
 
 Incorporates Three Different Adsorbates (R-NH<sub>2</sub>, R-NH, and R-S) 
 
