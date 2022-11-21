@@ -42,9 +42,9 @@ def eseg_ads_model(df):
     scaler = StandardScaler()
 
     # NN MLP Eseg model with tuned hyperparameters 
-    nn_mlp = MLPRegressor(activation='tanh',alpha=0.112,hidden_layer_sizes=(90,80,60,40), random_state=1, solver='adam',
-    learning_rate_init=0.011,max_iter=900,
-    epsilon=10**(-8),n_iter_no_change=35,tol=10**(-5))
+    nn_mlp = MLPRegressor(activation='tanh',alpha=0.145,hidden_layer_sizes=(95,80,80,60), random_state=1, solver='adam',
+    learning_rate_init=0.01314,max_iter=500,
+    epsilon=10**(-4),n_iter_no_change=10,tol=10**(-4))
 
     # create model pipeline 
     model = Pipeline(steps = [
