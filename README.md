@@ -16,21 +16,21 @@ predicted_eseg = model.predict(X)
 Eseg Ads Model utilizes 4 features, 3 of which are tabulated:
 
 ### ΔCE / CN
-- ΔCE = CE<sup>host</sup> - CE<sup>dopant</sup>
-- CE<sup>i</sup> = bulk cohesive energy of monometallic material (eV)
+- ΔCE = CE<sub>host</sub> - CE<sub>dopant</sub>
+- CE<sub>i</sub> = bulk cohesive energy of monometallic material (eV)
 - CN = coordination number of the slab (number of neighboring atoms)
 
 ### ΔBE / CN_adsorbate
-- ΔBE = BE<sup>host</sup> - BE<sup>dopant</sup>
+- ΔBE = BE<sub>host</sub> - BE<sub>dopant</sub>
 - Binding energy of an adsorbate on a single atom (5 to 7 atom system)
-- CN_ads is the coorindation number of the adsorbate on the metal surface. 
+- CN<sub>ads</sub> is the coorindation number of the adsorbate on the metal surface. 
 
 ### ΔWS
-- ΔWS = WS<sup>host</sup> - WS<sup>dopant</sup>
+- ΔWS = WS<sub>host</sub> - WS<sub>dopant</sub>
 - WS= Wigner seitz (au)
 
 ### ΔEA
-- ΔEA = EA<sup>host</sup> - EA<sup>dopant</sup>
+- ΔEA = EA<sub>host</sub> - EA<sub>dopant</sub>
 - EA = electron affinity (eV)
 
 
